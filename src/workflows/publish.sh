@@ -16,7 +16,7 @@ package_exists () {
   npm view --json "$1" &>/dev/null;
 }
 
-fail_if_unset NPM_AUTH_TOKEN
+fail_if_unset NODE_AUTH_TOKEN
 
 git_username="GitHub Actions"
 git_useremail="GitHub-Actions@cow.fi"
