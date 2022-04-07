@@ -209,10 +209,10 @@ yarn hardhat compute-merkle-root --claims <path to csv>
 
 ## Use the code in another project
 
-The Solidity contract code, contract ABIs, and Typescript library code are available through the NPM package `@gnosis.pm/cow-token`.
+The Solidity contract code, contract ABIs, and Typescript library code are available through the NPM package `@cowprotocol/token`.
 
 If your project uses yarn, you can install this package with:
 
 ```sh
-yarn add @gnosis.pm/cow-token
+yarn add @cowprotocol/token
 ```
