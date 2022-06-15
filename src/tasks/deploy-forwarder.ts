@@ -37,7 +37,7 @@ async function deployForwarder(
   console.log(`Using deployer ${deployer.address}`);
 
   if ((await ethers.provider.getCode(DEPLOYER_CONTRACT)) === "0x") {
-    // Note: it is already deployed on mainnet, Rinkeby and Gnosis Chain.
+    // Note: it is already deployed on mainnet, Rinkeby, Görli, and Gnosis Chain.
     throw new Error(
       `Deterministic deployer not available on network ${hre.network.name}. Please deploy it first.`,
     );
