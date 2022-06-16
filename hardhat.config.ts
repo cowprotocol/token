@@ -37,7 +37,7 @@ const DEFAULT_MNEMONIC =
   "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
 
 if (
-  ["rinkeby", "mainnet"].includes(argv.network) &&
+  ["rinkeby", "goerli", "mainnet"].includes(argv.network) &&
   NODE_URL === undefined &&
   INFURA_KEY === undefined
 ) {
@@ -104,6 +104,11 @@ export default {
       ...sharedNetworkConfig,
       chainId: 4,
     },
+    goerli: {
+      url: `https://goerli.infura.io/v3/${INFURA_KEY}`,
+      ...sharedNetworkConfig,
+      chainId: 5,
+    },
     gnosischain: {
       ...sharedNetworkConfig,
       url: "https://rpc.gnosischain.com",
@@ -120,6 +125,7 @@ export default {
       xdai: "any api key is good currently",
       mainnet: ETHERSCAN_API_KEY,
       rinkeby: ETHERSCAN_API_KEY,
+      goerli: ETHERSCAN_API_KEY,
     },
   },
 };

@@ -194,10 +194,10 @@ For verifying the deployed contracts on Etherscan:
 ```sh
 export INFURA_KEY='insert your Infura key here'
 export ETHERSCAN_API_KEY='insert your Etherscan API key here'
-yarn verify $VIRTUAL_TOKEN_ADDRESS --network $NETWORK
+yarn verify --virtual-token $VIRTUAL_TOKEN_ADDRESS --network $NETWORK
 ```
 
-It is currently only possible to verify the contract code on mainnet or Rinkeby.
+It is currently only possible to verify the contract code on Etherscan-type block explorers.
 
 ### Computing the Merkle Root
 
