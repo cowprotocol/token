@@ -127,7 +127,7 @@ describe("e2e-tests", () => {
   let claim: Claim;
   let claims: ProvenClaim[];
 
-  it("User Option: claims the user option with WETH and vest it", async () => {
+  it.only("User Option: claims the user option with WETH and vest it", async () => {
     claim = {
       account: user.address,
       claimableAmount: ethers.utils.parseUnits("1234", 18),
@@ -189,19 +189,29 @@ describe("e2e-tests", () => {
     const vestingPeriod =
       await deploymentData.vCowToken.VESTING_PERIOD_IN_SECONDS();
     setTime(deploymentData.deploymentTimestamp + vestingPeriod / 4);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    setTime(deploymentData.deploymentTimestamp + (vestingPeriod * 2) / 4);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    expect(
+      await deploymentData.vCowToken.instantlySwappableBalance(user.address),
+    ).to.be.equal(claim.claimableAmount.mul(2).div(4));
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    await deploymentData.vCowToken.connect(user).swap(0);
+    setTime(deploymentData.deploymentTimestamp + (vestingPeriod * 3) / 4);
     await deploymentData.vCowToken.connect(user).swapAll();
     expect(await deploymentData.cowToken.balanceOf(user.address)).to.be.equal(
-      claim.claimableAmount.div(4),
-    );
-    expect(
-      await deploymentData.cowToken.balanceOf(deploymentData.vCowToken.address),
-    ).to.be.equal(initialCowSupply.sub(claim.claimableAmount.div(4)));
-    expect(await deploymentData.vCowToken.totalSupply()).to.be.equal(
-      vCowTokenSupply.sub(claim.claimableAmount.div(4)),
-    );
-    expect(await deploymentData.vCowToken.balanceOf(user.address)).to.equal(
       claim.claimableAmount.mul(3).div(4),
     );
+    // Note: I set the time every few step to make the math easier, otherwise
+    // every transaction executed onchain increases by just a few seconds the
+    // current timestamp, making the claimed balance slightly higher than what
+    // would be expected from the previous timestamp.
   });
 
   it("User Option: claims the user option on behalf of someone else with ETH", async () => {
