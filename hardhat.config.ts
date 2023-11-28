@@ -37,7 +37,7 @@ const DEFAULT_MNEMONIC =
   "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
 
 if (
-  ["rinkeby", "goerli", "mainnet"].includes(argv.network) &&
+  ["rinkeby", "goerli"].includes(argv.network) &&
   NODE_URL === undefined &&
   INFURA_KEY === undefined
 ) {
@@ -95,7 +95,7 @@ export default {
       initialBaseFeePerGas,
     },
     mainnet: {
-      url: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
+      url: "https://rpc.mevblocker.io/",
       ...sharedNetworkConfig,
       chainId: 1,
     },
@@ -108,6 +108,12 @@ export default {
       url: `https://goerli.infura.io/v3/${INFURA_KEY}`,
       ...sharedNetworkConfig,
       chainId: 5,
+    },
+    sepolia: {
+      // For more public RPCs: https://chainlist.org/chain/11155111
+      url: "https://ethereum-sepolia.publicnode.com",
+      ...sharedNetworkConfig,
+      chainId: 11155111,
     },
     gnosischain: {
       ...sharedNetworkConfig,
@@ -126,6 +132,7 @@ export default {
       mainnet: ETHERSCAN_API_KEY,
       rinkeby: ETHERSCAN_API_KEY,
       goerli: ETHERSCAN_API_KEY,
+      sepolia: ETHERSCAN_API_KEY,
     },
   },
 };

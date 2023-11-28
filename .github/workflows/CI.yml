@@ -32,5 +32,3 @@ jobs:
       - run: yarn test:ignored-in-coverage
       - run: yarn test:mainnet
         continue-on-error: true
-        env:
-          INFURA_KEY: ${{ secrets.INFURA_KEY }}
