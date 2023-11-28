@@ -223,3 +223,17 @@ If your project uses yarn, you can install this package with:
 ```sh
 yarn add @cowprotocol/token
 ```
+
+### Claim for many addresses
+
+You can use a script to claim multiple times for different addresses using a single private key.
+
+It requires the CSV list of all available claims and a file containing a comma-separated list of addresses that will see their claims executed.
+It can be run with:
+
+```sh
+npx hardhat mass-claim --network $NETWORK --pay-usdc --pay-gno --pay-weth --claim-csv "$PATH_TO_CSV_CLAIMS_FILE" --claim-targets "$PATH_TO_COMMA_SEPARATED_ADDRESS_FILE" --v-cow-token $VCOW_TOKEN_ADDRESS
+```
+
+The script assumes there are enough USDC, GNO, and WETH funds in the private key to execute all claims.
+If not, you can omit specific paid claim types by omitting any of the `--pay-*` flags.
