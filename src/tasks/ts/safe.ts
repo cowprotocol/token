@@ -6,11 +6,11 @@ import {
   MetaTransaction,
 } from "@gnosis.pm/safe-contracts";
 import GnosisSafe from "@gnosis.pm/safe-contracts/build/artifacts/contracts/GnosisSafe.sol/GnosisSafe.json";
-import CompatibilityFallbackHandlerDeployment from "@gnosis.pm/safe-deployments/src/assets/v1.3.0/compatibility_fallback_handler.json";
-import CreateCallDeployment from "@gnosis.pm/safe-deployments/src/assets/v1.3.0/create_call.json";
-import GnosisSafeDeployment from "@gnosis.pm/safe-deployments/src/assets/v1.3.0/gnosis_safe.json";
-import MultiSendDeployment from "@gnosis.pm/safe-deployments/src/assets/v1.3.0/multi_send_call_only.json";
-import GnosisSafeProxyFactoryDeployment from "@gnosis.pm/safe-deployments/src/assets/v1.3.0/proxy_factory.json";
+import CompatibilityFallbackHandlerDeployment from "@safe-global/safe-deployments/src/assets/v1.3.0/compatibility_fallback_handler.json";
+import CreateCallDeployment from "@safe-global/safe-deployments/src/assets/v1.3.0/create_call.json";
+import GnosisSafeDeployment from "@safe-global/safe-deployments/src/assets/v1.3.0/gnosis_safe.json";
+import MultiSendDeployment from "@safe-global/safe-deployments/src/assets/v1.3.0/multi_send_call_only.json";
+import GnosisSafeProxyFactoryDeployment from "@safe-global/safe-deployments/src/assets/v1.3.0/proxy_factory.json";
 import { Contract, Signer, Wallet } from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
