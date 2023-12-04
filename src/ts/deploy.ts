@@ -355,7 +355,13 @@ export async function getDeployArgsFromRealToken(
     null,
     null,
   );
-  const logs = await realToken.queryFilter(filterMintingTransfers, 0, "latest");
+  let logs;
+  try {
+    logs = await realToken.queryFilter(filterMintingTransfers, 0, "latest");
+  } catch (e) {
+    console.error(e);
+    throw new Error("Error retrieving token transfers");
+  }
   const events = logs.map((log) => realToken.interface.parseLog(log));
   const totalSupply = BigNumber.from(events[0].args.value).toString();
   // initialTokenHolder is the receiver of the first mint transfer

@@ -167,12 +167,19 @@ Here is an example of how to run a deployment:
 ```
 export INFURA_KEY='insert your Infura key here'
 export PK='insert you private key here'
-npx hardhat test-deployment --network rinkeby /path/to/claims.csv
+npx hardhat test-deployment --network $NETWORK /path/to/claims.csv
 ```
 
-The output files can be found in the `output/test-deployment` folder, which include the addresses of the deployed Gnosis Safes.
+The output files can be found in the `output/test-deployment` folder, which include the addresses of the deployed Gnosis Safes (file `params.json`).
 
 More advanced options can be listed by running `npx hardhat test-deployment --help`.
+
+The deployed contract code can be verified on the block explorer immediately after deploying with:
+
+```
+export ETHERSCAN_API_KEY='insert your Etherscan API key here'
+yarn verify --use-test-deployment-params --network $NETWORK
+```
 
 ### Example CSV file with claims
 

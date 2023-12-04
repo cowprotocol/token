@@ -30,8 +30,12 @@ import {
   execSafeTransaction,
   gnosisSafeAt,
 } from "./ts/safe";
-
-const OUTPUT_FOLDER = "./output/test-deployment";
+import {
+  DeploymentInfo,
+  OUTPUT_FOLDER,
+  OutputParamsJsonFormat,
+  PARAMS_FILE,
+} from "./ts/test-deployment";
 
 const defaultArgs = {
   userCount: 1000,
@@ -349,7 +353,10 @@ async function generateClaimsAndDeploy(
 
   console.log("Clearing old files...");
   await fs.rm(`${OUTPUT_FOLDER}/claims.json`, { recursive: true, force: true });
-  await fs.rm(`${OUTPUT_FOLDER}/params.json`, { recursive: true, force: true });
+  await fs.rm(`${OUTPUT_FOLDER}/${PARAMS_FILE}`, {
+    recursive: true,
+    force: true,
+  });
   await removeSplitClaimFiles(OUTPUT_FOLDER);
 
   console.log("Saving generated data to file...");
@@ -359,7 +366,7 @@ async function generateClaimsAndDeploy(
     JSON.stringify(claimsWithProof),
   );
   await fs.writeFile(
-    `${OUTPUT_FOLDER}/params.json`,
+    `${OUTPUT_FOLDER}/${PARAMS_FILE}`,
     deployParamsToString({
       realTokenDeployParams,
       virtualTokenDeployParams,
@@ -401,7 +408,7 @@ async function generateClaimsAndDeploy(
 
   console.log("Updating files with deployment information...");
   await fs.writeFile(
-    `${OUTPUT_FOLDER}/params.json`,
+    `${OUTPUT_FOLDER}/${PARAMS_FILE}`,
     deployParamsToString({
       realTokenDeployParams,
       virtualTokenDeployParams,
@@ -411,28 +418,19 @@ async function generateClaimsAndDeploy(
   );
 }
 
-interface DeploymentInfo {
-  realTokenDeployParams: RealTokenDeployParams;
-  virtualTokenDeployParams: Omit<VirtualTokenDeployParams, "realToken">;
-  realTokenAddress: string;
-  virtualTokenAddress?: string;
-}
 function deployParamsToString({
   realTokenDeployParams,
   virtualTokenDeployParams,
   realTokenAddress,
   virtualTokenAddress,
 }: DeploymentInfo): string {
-  return JSON.stringify(
-    {
-      realTokenAddress,
-      virtualTokenAddress,
-      ...realTokenDeployParams,
-      ...virtualTokenDeployParams,
-    },
-    undefined,
-    2,
-  );
+  const jsonContent: OutputParamsJsonFormat = {
+    realTokenAddress,
+    virtualTokenAddress,
+    ...realTokenDeployParams,
+    ...virtualTokenDeployParams,
+  };
+  return JSON.stringify(jsonContent, undefined, 2);
 }
 
 export { setupTestDeploymentTask };
