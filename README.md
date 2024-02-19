@@ -200,7 +200,7 @@ For verifying the deployed contracts on Etherscan:
 
 ```sh
 export INFURA_KEY='insert your Infura key here'
-export ETHERSCAN_API_KEY='insert your Etherscan API key here'
+export ETHERSCAN_API_KEY='insert your Etherscan/Gnosisscan/... API key here'
 yarn verify --virtual-token $VIRTUAL_TOKEN_ADDRESS --network $NETWORK
 ```
 
