@@ -128,7 +128,7 @@ export default {
   },
   etherscan: {
     apiKey: {
-      xdai: "any api key is good currently",
+      gnosis: ETHERSCAN_API_KEY,
       mainnet: ETHERSCAN_API_KEY,
       rinkeby: ETHERSCAN_API_KEY,
       goerli: ETHERSCAN_API_KEY,
