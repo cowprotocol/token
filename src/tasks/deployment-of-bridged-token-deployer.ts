@@ -56,7 +56,7 @@ async function generateDeployment(
   const [deployer] = await ethers.getSigners();
 
   const chainId = (await hre.ethers.provider.getNetwork()).chainId.toString();
-  if (chainId !== "100") {
+  if (chainId !== "100" && chainId !== "10200") {
     throw new Error(
       `This script must be run on gnosis chain. Found chainId ${chainId}`,
     );

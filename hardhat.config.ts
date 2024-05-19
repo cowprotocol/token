@@ -120,6 +120,11 @@ export default {
       url: "https://rpc.gnosischain.com",
       chainId: 100,
     },
+    chiado: {
+      ...sharedNetworkConfig,
+      url: "https://rpc.chiadochain.net",
+      chainId: 10200,
+    },
   },
   gasReporter: {
     enabled: REPORT_GAS ? true : false,
@@ -129,10 +134,21 @@ export default {
   etherscan: {
     apiKey: {
       gnosis: ETHERSCAN_API_KEY,
+      chiado: ETHERSCAN_API_KEY,
       mainnet: ETHERSCAN_API_KEY,
       rinkeby: ETHERSCAN_API_KEY,
       goerli: ETHERSCAN_API_KEY,
       sepolia: ETHERSCAN_API_KEY,
     },
+    customChains: [
+      {
+        network: "chiado",
+        chainId: 10200,
+        urls: {
+          apiURL: "https://gnosis-chiado.blockscout.com/api",
+          browserURL: "https://gnosis-chiado.blockscout.com",
+        },
+      },
+    ],
   },
 };
